@@ -39,11 +39,4 @@ gh-pages: install-github-updater
 	git push -f origin gh-pages
 	update-github-pages
 
-check-s3cmd:
-	@which s3cmd 2>&1 >/dev/null || echo "You must install a working copy of s3cmd configured to upload to the docs.tinyci.org bucket."
-
-upload: check-s3cmd build
-	s3cmd put --recursive build/* s3://docs.tinyci.org/
-	s3cmd put --recursive build/css/* -m text/css s3://docs.tinyci.org/css/
-
 .PHONY: all shell build-docker build-image build

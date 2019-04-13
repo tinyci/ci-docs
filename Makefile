@@ -23,7 +23,10 @@ build-image:
 build: build-image
 	$(DOCKER_PRECMD) make build-docker
 
-gh-pages:
+install-github-updater:
+	go install -v ./update-github-pages
+
+gh-pages: install-github-updater
 	git checkout master
 	make build
 	git branch -D gh-pages || :
@@ -34,12 +37,6 @@ gh-pages:
 	git add .
 	git commit -a -s -m "tinyCI docs generated on $$(date)"
 	git push -f origin gh-pages
-
-check-s3cmd:
-	@which s3cmd 2>&1 >/dev/null || echo "You must install a working copy of s3cmd configured to upload to the docs.tinyci.org bucket."
-
-upload: check-s3cmd build
-	s3cmd put --recursive build/* s3://docs.tinyci.org/
-	s3cmd put --recursive build/css/* -m text/css s3://docs.tinyci.org/css/
+	update-github-pages
 
 .PHONY: all shell build-docker build-image build

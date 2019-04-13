@@ -1,0 +1,232 @@
+/* your custom css */
+@font-face {
+  font-family: hanken-bold;
+  src: url(/fonts/HankenGrotesk-Bold.ttf) format('truetype');
+}
+
+.fixedHeaderContainer header {
+  width: 100%;
+}
+
+.fixedHeaderContainer header img{
+  margin-top: -10px;
+}
+
+.fixedHeaderContainer header .headerTitleWithLogo{
+  display: none;
+}
+
+.socialNav {
+  min-width: 220px;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  height: 34px;
+}
+
+.social-links {
+  list-style: none;
+  float: right;
+}
+
+a {
+  color: #888;
+  /*text-decoration: underline;*/
+}
+
+
+.mainContainer{
+  padding: 48px 0 0 0;
+}
+
+
+.nav-site a{
+  text-decoration: none;
+}
+
+.social-links li {
+  float: left;
+  margin-left: 20px;
+  margin-top: 0;
+}
+
+.social-links li i {
+  opacity: 0.6;
+  font-size: 30px;
+}
+
+.social-links li:hover i {
+  opacity: 1;
+}
+
+.fixedHeaderContainer {
+  position: relative;
+}
+
+.homeContainer .homeWrapper .projectLogo {
+  display: block;
+  padding: 0;
+  position: relative;
+}
+
+.homeContainer .homeWrapper .projectLogo img {
+  height: 150px;
+}
+
+.imageAlignSide .blockImage {
+  max-width: 120px;
+}
+
+.imageAlignSide .blockContent,.container .gridBlock .blockContent p{
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.blockContent h2 {
+  margin-top: 10px;
+}
+
+.container .wrapper .imageAlignSide .blockContent h2 p {
+  margin-bottom: 0;
+  padding-bottom: 20px;
+  border-bottom: solid #6e6e6e 1px;
+}
+
+.blockContent p {
+  text-align: left;
+}
+
+.container .wrapper .imageAlignSide p {
+  margin-bottom: 0;
+}
+
+.showcase-container {
+  background-image: url(/img/about-us-bg-3.jpg);
+  padding: 50px 0;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.productShowcaseSection-1 {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  border: solid 2px #226db3;
+  background-color: #323336;
+  color: #ffffff;
+}
+
+.productShowcaseSection-1 h2 {
+  margin-top: 0.5em;
+}
+
+.promoSection .promoRow .pluginRowBlock{
+  margin: 40px -2px 0;
+}
+
+.promoSection .promoRow .pluginRowBlock .pluginWrapper{
+  padding: 0 5px;
+}
+
+.pluginWrapper .button{
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #3c7bb6;
+  color: white;
+  border: none;
+}
+
+.pluginWrapper .button:hover{
+  background-image: linear-gradient(-190deg, #4ACCCC 0%, #1E5F9C 95%);
+  color: white;
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (max-width: 735px){
+  .nav-footer .sitemap{
+    text-align: center;
+  }
+
+  .nav-footer .sitemap .nav-home{
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  /*header area*/
+
+  .fixedHeaderContainer {
+    min-height: 80px;
+  }
+
+  .fixedHeaderContainer header {
+    margin-top: 15px;
+  }
+
+  .homeContainer .homeWrapper .projectLogo {
+    width: 50%;
+    float: left;
+  }
+
+  .navigationSlider {
+    margin-left: 10px;
+  }
+
+  .navigationSlider .slidingNav ul li {
+    padding: 0 10px;
+    text-transform: uppercase;
+  }
+
+  .navigationSlider .slidingNav ul li a {
+    font-family: 'hanken-bold';
+  }
+
+  .navigationSlider .slidingNav ul li a:hover {
+    background: none;
+  }
+  .navigationSlider .slidingNav ul li a::before,
+  .navigationSlider .slidingNav ul li a::after {
+    display: inline-block;
+    opacity: 0;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+    -moz-transition: -moz-transform 0.3s, opacity 0.2s;
+    transition: transform 0.3s, opacity 0.2s;
+  }
+
+  .navigationSlider .slidingNav ul li a::before {
+    content: '<';
+    margin-right: 10px;
+    -webkit-transform: translateX(20px);
+    -moz-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+
+  .navigationSlider .slidingNav ul li a::after {
+    margin-left: 10px;
+    content: '>';
+    -webkit-transform: translateX(-20px);
+    -moz-transform: translateX(-20px);
+    transform: translateX(-20px);
+  }
+
+  .navigationSlider .slidingNav ul li a:hover::before,
+  .navigationSlider .slidingNav ul li a:hover::after {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (min-width: 1500px) {
+}

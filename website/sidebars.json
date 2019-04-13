@@ -1,0 +1,29 @@
+{
+  "intro": {
+    "Set up tinyCI": ["intro"],
+    "Overview": [
+      "terminology",
+      "overview",
+      "clients",
+      "runner",
+      "queues",
+      "diff_selection"
+    ]
+  },
+  "installation": {
+    "Installation Guide": ["installation"]
+  },
+  "configuration": {
+    "Configuration Guide": [
+      "configuration",
+      "auth_modes",
+      "auth_config",
+      "tls_authentication",
+      "client_config",
+      "service_config",
+      "hooksvc_config",
+      "repository_config",
+      "repository_properties"
+    ]
+  }
+}

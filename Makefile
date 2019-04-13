@@ -23,6 +23,18 @@ build-image:
 build: build-image
 	$(DOCKER_PRECMD) make build-docker
 
+gh-pages:
+	git checkout master
+	make build
+	git branch -D gh-pages || :
+	git checkout --orphan gh-pages
+	find . ! -wholename './build/*' -a ! -wholename './build' -a ! -wholename './.git' -a ! -wholename './.git/*' | xargs rm -rf || :
+	rsync -av build/* .
+	rm -rf build
+	git add .
+	git commit -a -s -m "tinyCI docs generated on $$(date)"
+	git push -f origin gh-pages
+
 check-s3cmd:
 	@which s3cmd 2>&1 >/dev/null || echo "You must install a working copy of s3cmd configured to upload to the docs.tinyci.org bucket."
 

@@ -25,7 +25,7 @@ const users = [
 const siteConfig = {
   title: 'tinyCI', // Title for your website.
   tagline: 'Your tests can be run faster!',
-  url: 'http://docs.tinyci.org', // Your website URL
+  url: 'https://docs.tinyci.org', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',

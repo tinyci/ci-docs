@@ -27,16 +27,6 @@ install-github-updater:
 	go install -v ./update-github-pages
 
 gh-pages: install-github-updater
-	git checkout master
-	make build
-	git branch -D gh-pages || :
-	git checkout --orphan gh-pages
-	find . ! -wholename './build/*' -a ! -wholename './build' -a ! -wholename './.git' -a ! -wholename './.git/*' | xargs rm -rf || :
-	rsync -av build/* .
-	rm -rf build
-	git add .
-	git commit -a -s -m "tinyCI docs generated on $$(date)"
-	git push -f origin gh-pages
-	update-github-pages
+	@bash gh-pages.sh
 
-.PHONY: all shell build-docker build-image build
+.PHONY: all shell build-docker build-image build gh-pages

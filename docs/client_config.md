@@ -12,6 +12,9 @@ Please keep in mind any [TLS configuration](tls_authentication.md) will
 necessarily need to be managed in the [service configuration](service_config.md)
 as well.
 
+Please note that **GRPC services do not use URLs. Just host:port
+combinations**. All the internal services use GRPC.
+
 ## Example
 
 ```yaml

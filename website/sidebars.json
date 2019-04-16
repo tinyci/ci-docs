@@ -17,7 +17,7 @@
   "configuration": {
     "Configuration Guide": [
       "configuration",
-      "auth_modes",
+      "oauth",
       "auth_config",
       "tls_authentication",
       "client_config",

@@ -15,11 +15,12 @@ can all refer to this and be functional:
 
 ```yaml
 auth:
-  no_auth: true
-  no_modify: false
-  no_submit: false
-  github_token: 'my-github-token'
   session_crypt_key: 1234567123456712345671234567123456712345671234567888888812345678
+  token_crypt_key: 1234567123456712345671234567123456712345671234567888888812345678
+oauth:
+  client_id: '<your id>'
+  client_secret: '<your secret>'
+  redirect_url: 'http://<your UI endpoint>/uisvc/login'
 tls:
   ca: /var/ca/rootCA.pem
   cert: /var/ca/localhost-server.pem

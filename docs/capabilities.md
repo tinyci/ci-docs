@@ -30,3 +30,10 @@ This will be in the UI soon; but for now, install and configure
 $ tinycli capabilities add <user> <capability>
 $ tinycli capabilities remove <user> <capability>
 ```
+
+## Setting Fixed Capabilities in the Configuration
+
+Another method of setting capabilities lies in the configuration. If provided
+for a user, it will override all capabilities in the database.
+
+See more about [configuring fixed_capabilties here](auth_config#fixed_capabilities).

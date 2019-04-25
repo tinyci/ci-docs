@@ -44,6 +44,7 @@ clients:
   assetsvc: 'localhost:6002'
 services:
   last_scanned_wait: 1h
+  logs_root_path: /var/tinyci/logs
 websockets:
   insecure_websockets: true
 db: 'host=localhost database=tinyci user=tinyci password=tinyci'

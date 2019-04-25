@@ -51,6 +51,27 @@ websockets:
   insecure_websockets: true
 ```
 
+Under the `services` free-form section, uisvc also takes a parameter called
+`last_scanned_wait`: it takes a [go duration](https://golang.org/pkg/time/#ParseDuration) as a value and it
+determines how long to wait before initiating a fresh repository scan of users
+who are capable of adding repositories.{
+
+```yaml
+services:
+  last_scanned_wait: 1h
+```
+
+## assetsvc logs path
+
+Under the `services` free-form section, assetsvc has a key for programming the
+logs path where log work and storage will be performed. This path is defaulted
+to `/var/tinyci/logs`.
+
+```yaml
+services:
+  logs_root_path: /tmp/logs # for example
+```
+
 ### URLs
 
 ```yaml

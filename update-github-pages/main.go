@@ -18,7 +18,7 @@ import (
 )
 
 var (
-	dnsName      = "docs.tinyci.org"
+	dnsName      = "tinyci.org"
 	orgName      = "tinyci"
 	repoName     = "ci-docs"
 	targetBranch = "gh-pages"

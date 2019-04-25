@@ -17,6 +17,14 @@ can all refer to this and be functional:
 auth:
   session_crypt_key: 1234567123456712345671234567123456712345671234567888888812345678
   token_crypt_key: 1234567123456712345671234567123456712345671234567888888812345678
+  fixed_capabilities:
+    me:
+      - 'modify:user'
+      - 'modify:ci'
+      - 'submit'
+      - 'cancel'
+    bot:
+      - 'modify:ci'
 oauth:
   client_id: '<your id>'
   client_secret: '<your secret>'

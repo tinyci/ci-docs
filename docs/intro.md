@@ -185,7 +185,7 @@ This command can be run again if an error is encountered.
 
 #### Log in and add the first repository
 
-The next step is to open the tinyCI web UI found at http://192.168.50.5:3000.
+The next step is to open the tinyCI web UI found at [http://192.168.50.5:3000](http://192.168.50.5:3000).
 
 The login screen should be displayed in the browser if the tinyCI instance
 has come up successfully.

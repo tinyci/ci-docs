@@ -56,14 +56,13 @@ $ cd ci-demo
 #### OAuth
 
 A GitHub OAuth application must be created to allow tinyCI to use the
-GitHub APIs.
+GitHub APIs. You can create a [new one here.](https://github.com/settings/developers)
 
 The OAuth application must have the following configuration:
 
-Homepage URL: http://192.168.50.5:3000/
+Homepage URL: `http://192.168.50.5:3000/`
 
-Authorization callback URL: http://192.168.50.5:3000/uisvc/login
-
+Authorization callback URL: `http://192.168.50.5:3000/uisvc/login`
 
 This ensures that GitHub redirects to the URL which is accessible only
 from the local machine.
@@ -87,17 +86,23 @@ ngrok makes it possible to bring up a reverse tunnel with TLS. Such a
 tunnel is needed to enable GitHub to deliver its hooks to the
 tinyCI installation which runs on virtual machines.
 
-ngrok should be set up and available on the localhost.
-
-The following command will run a script which sets up the ngrok tunnel:
+ngrok should be already running, and available on the localhost and pointed at
+the destination `192.168.50.5:3000`. You can do this by entering this in your shell (and leaving it open):
 
 ```
-$ ./set_up_ngrok
+$ ngrok tcp 192.168.50.5:3000
 ```
-This command will print an URL when it's done. https://abcde12345.ngrok.io
+
+The following command will run a script which sets up the ngrok:
+
+```
+$ ./set_up_ngrok.sh
+```
+
+This command will print an URL when it's done. `https://abcde12345.ngrok.io`
 is an example URL which is similar to what this script will print once
-it's done running. The URL printed by the script will be needed later
-for the tinyCI config file.
+it's done running. **The URL printed by the script will be needed later
+for the tinyCI config file.**
 
 The script will stop and print errors instead of the URL if it fails.
 ngrok must be debugged, started and the above command needs to be run
@@ -105,23 +110,21 @@ again to set up the tunnel.
 
 #### Prepare the configuration file
 
-The following config file must be updated and saved as services.yaml
-within the ci-demo directory.
+The following config file must be updated and saved as `services.yaml`
+within the `ci-demo` directory.
 
 The following variables must be set inside the config:
-```
-session_crypt_key: must be generated
-token_crypt_key: must be generated
-client_id: the client ID provided by GitHub when creating the app
-client_secret: the client secret provided by GitHub when creating the
-app
-actualgithubuser: must be replaced with an actual GitHub user
-hook_url: must be replaced with the URL provided by ngrok; the /hook
-suffix must be left as it is
-```
 
-The session_crypt_key and token_crypt_key can be generated using the
+- `session_crypt_key`: must be generated
+- `token_crypt_key`: must be generated
+- `client_id`: the client ID provided by GitHub when creating the app
+- `client_secret`: the client secret provided by GitHub when creating the app
+- `actualgithubuser`: must be replaced with an actual GitHub user
+- `hook_url`: must be replaced with the URL provided by ngrok; the /hook suffix must be left as it is
+
+The `session_crypt_key` and `token_crypt_key` can be generated using the
 following command:
+
 ```
 xxd -ps -l 32 /dev/urandom | perl -e 'undef $/; print join("", split(/\n/, <>))."\n";'
 ```
@@ -129,10 +132,10 @@ xxd -ps -l 32 /dev/urandom | perl -e 'undef $/; print join("", split(/\n/, <>)).
 More details about these keys can be found in the [auth config](auth_config)
 section.
 
-services.yaml template:
+`services.yaml` template:
+
 ```
 auth:
-  no_auth: false
   session_crypt_key: 1234567890replacewithgeneratedkey
   token_crypt_key: 1234567890replacewithsecondgeneratedkey
   fixed_capabilities:
@@ -167,7 +170,7 @@ A binary release of tinyCI needs to be downloaded and put in the
 ci-demo directory.
 
 The latest release can be found at [tinyCI releases](https:/github.com/tinyci/tinyci/releases).
-The downloaded release must be saved as release.tar.gz.
+The downloaded release must be saved as `release.tar.gz` at the root of the repository.
 
 #### Bring up the environment
 

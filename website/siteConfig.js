@@ -9,18 +9,7 @@
 // site configuration options.
 
 // List of projects/orgs using your project for the users page.
-const users = [
-  /*
-  {
-    caption: 'dogfood.tinyci.org',
-    // You will need to prepend the image path with your baseUrl
-    // if it is not '/', like: '/test-site/img/docusaurus.svg'.
-    image: '/img/logo-main.png',
-    infoLink: 'http://dogfood.tinyci.org',
-    pinned: true,
-  },
-  */
-];
+const users = [];
 
 const siteConfig = {
   title: 'tinyCI', // Title for your website.

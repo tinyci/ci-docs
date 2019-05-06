@@ -61,9 +61,7 @@ class HomeSplash extends React.Component {
           <PromoSection>
             <Button href="#try">Try It Out</Button>
             <Button href="https://github.com/tinyci/tinyci">Github</Button>
-            <Button href="http://dogfood.tinyci.org">
-              tinyCI testing tinyCI
-            </Button>
+            <Button href="http://test.tinyci.org">tinyCI testing tinyCI</Button>
           </PromoSection>
         </div>
       </SplashContainer>

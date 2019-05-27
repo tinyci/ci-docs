@@ -15,7 +15,9 @@ rm -rf build
 
 agents=$(mktemp -d /tmp/ci-agents.XXXXX)
 git clone https://github.com/tinyci/ci-agents ${agents}
-cd ${agents}/ci-gen
+cd ${agents}
+git submodule update --init --recursive
+cd ci-gen
 make swagger-docs grpc-docs
 mkdir ${dir}/swagger
 cp swagger/docs.html ${dir}/swagger/index.html

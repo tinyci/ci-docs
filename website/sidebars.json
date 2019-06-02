@@ -23,6 +23,7 @@
       "client_config",
       "service_config",
       "hooksvc_config",
+      "runner_config",
       "repository_config",
       "repository_properties"
     ]

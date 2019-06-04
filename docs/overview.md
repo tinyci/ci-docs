@@ -19,7 +19,7 @@ all services to be globally load balanced, managed in a highly-available
 way, and are fully [STONITH](https://en.wikipedia.org/wiki/STONITH)-compatible.
 
 The interconnections allow us to formulate a stack of microservices that have
-several leads into the system. Exmaple: The `hooksvc` lives at the edge where
+several leads into the system. Example: The `hooksvc` lives at the edge where
 it can be reached by github, but only talks to the `queuesvc`, which is in turn
 talking to the `datasvc` and github itself to accomplish its goals. This
 distinction means that the `uisvc`, and react UI, do not need to live at the

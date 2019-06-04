@@ -64,7 +64,7 @@ we'll talk about it later.
 
 <img src="/img/screenshots/submit.png" />
 
-Once the submission succeds, a queue item will appear in the run list:
+Once the submission succeeds, a queue item will appear in the run list:
 
 <img src="/img/screenshots/run-queued.png" />
 

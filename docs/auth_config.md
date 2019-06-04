@@ -27,7 +27,7 @@ auth:
 
 The session crypt key is the key used to encrypt and decrypt session tokens.
 **The uisvc will not boot without this set**. This string is presented in
-hexidecimal format, and being an AES key must resolve to 16, 24, or 32 bytes
+hexadecimal format, and being an AES key must resolve to 16, 24, or 32 bytes
 after being converted. This script can be used to generate the key:
 
 ```text

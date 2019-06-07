@@ -92,3 +92,11 @@ errors. These logs are piped to the `logsvc`.
 ```yaml
 log_requests: true
 ```
+
+### Tracing
+
+Tracing is currently provided by [jaegertracing](https://jaegertracing.io) and
+can be enabled by setting the [environment variables](https://github.com/jaegertracing/jaeger-client-go#environment-variables)
+related to the host and port of your Jaeger collector and setting
+`enable_tracing` to `true in the configuration. Tracing support is currently
+very primitive, and we're planning to expand on it soon.

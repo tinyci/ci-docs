@@ -51,6 +51,7 @@ db: 'host=localhost database=tinyci user=tinyci password=tinyci'
 hook_url: 'http://my.remote.endpoint.example.com/hook'
 url: 'http://localhost:3000'
 log_requests: true
+enable_tracing: false
 ```
 
 For larger installations configuration files will potentially be more diverse

@@ -61,7 +61,9 @@ class HomeSplash extends React.Component {
           <PromoSection>
             <Button href="#try">Try It Out</Button>
             <Button href="https://github.com/tinyci/tinyci">Github</Button>
-            <Button href="http://test.tinyci.org">tinyCI testing tinyCI</Button>
+            <Button href="https://test.tinyci.org">
+              tinyCI testing tinyCI
+            </Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -95,17 +97,23 @@ class Index extends React.Component {
           </h2>
           <MarkdownBlock>
             The user experience for other CI systems has not historically been a
-            positive experience for our team, so we wish to change that. The
-            user interface is attached to a microservice generated from a
-            swagger specification. This allows us to provide a pleasing
-            React-based UI by default, but also a CLI component for those of you
-            who wish to work exclusively in the terminal. Additionally, one can
-            leverage our client libraries in go, or generate new ones from the
-            swagger & GRPC specifications to create just about anything you can
-            think of with our data.
+            positive experience for our team, so we wish to change that. **We
+            will work hard to keep a consistent, easy to use UI.** We have both
+            a react-based UI and a CLI component depending on which you'd
+            prefer.
           </MarkdownBlock>
-          <img src="img/screenshots/ui.png" />
-          <img src="img/screenshots/termui.png" />
+          <div style={{fontSize: '0.8em'}}>
+            (Clicking on the image will open it in a new window)
+          </div>
+          <a href="img/screenshots/ui1.png" target="_blank">
+            <img width="30%" src="img/screenshots/ui1.png" />
+          </a>
+          <a href="img/screenshots/ui2.png" target="_blank">
+            <img width="30%" src="img/screenshots/ui2.png" />
+          </a>
+          <a href="img/screenshots/termui.png" target="_blank">
+            <img width="30%" src="img/screenshots/termui.png" />
+          </a>
         </div>
       </div>
     );
@@ -120,6 +128,8 @@ class Index extends React.Component {
             Checks](https://developer.github.com/v3/checks/) support is on the
             way, but for now you can leverage our easy auto-configuration of
             hooks and rich status interface.`,
+            title: 'Superior Github Integration',
+            image: `${baseUrl}img/logo-main.png`,
           },
           {
             content: `Check out our [demos](https://github.com/tinyci/ci-demo)
@@ -168,16 +178,17 @@ class Index extends React.Component {
               'Parallel runs save you time. Diff Selection saves you even *more* time.',
           },
           {
-            content: `Every CI user has special needs, even those of us doing simple
-            launches of \`go test\` invokes into Kubernetes clusters, but
-            especially those tying to internal systems or platforms. tinyCI
-            provides a swagger-generated frontend API and a GRPC-generated
-            pantheon of services you can extend, attach to, or even replace if
-            necessary.  Define what you need, using our services to fill the
-            gaps.`,
+            content: `CI users typically have special needs: Some need to run things
+            in an isolated environment, some need to run with additional
+            infrastructure, others need compliance management. tinyCI solves
+            this problem by making the protocol abstract enough to use by most
+            languages and frameworks, allowing you to define what you want in a
+            replacement for our runners or even our core services. As long as
+            you can speak to the other services, you can do whatever you
+            want.`,
             image: `${baseUrl}img/feature-2.png`,
             imageAlign: 'left',
-            title: 'Nobody needs a plain CI.',
+            title: 'Almost nobody needs a plain CI.',
           },
         ]}
       </Block>

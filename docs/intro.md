@@ -3,193 +3,108 @@ id: intro
 title: Intro
 ---
 
-#### Demo environment
+# Demo environment
 
-This is a step by step guide which shows how to bring up tinyCI in a
-virtual environment based on Vagrant. This makes it easy to try tinyCI.
+This is a step by step guide which shows how to bring up tinyCI in a virtual
+environment based on Vagrant. This demo will work on OS X or Linux.
 
-The virtual machines are only accessible from the host.
+The virtual machines are only accessible from the host. As a result, you cannot
+accept submissions from github directly, but can currently manually submit repositories to tinyCI for testing.
 
-A single port must be forwarded to enable hook delivery.
+## Installing the Demo
 
-#### Requirements
+Check out
+[tinyci/ci-demo](https://github.com/tinyci/ci-demo/blob/master/README.md) for
+an easy-to-install demo. Follow the instructions in that README, and return
+here.
 
-The host machine must run macOS or Linux. This setup has been tested
-only on Linux and macOS.
+**Please note**, if you did not properly customize the demo with the `customize.rb`
+script, you may not be able to see the "Add to CI" or "Submit" buttons
+referenced below. (Permissions issue). If you made a mistake, just fix it and
+restart the demo so it can reconfigure everything.
 
-The latest version of Vagrant must be downloaded and installed. It can
-be found at the [Vagrant download page](https://www.vagrantup.com/downloads.html).
+## Setting up a Repository
 
-VirtualBox 5.2 or newer is needed. VirtualBox
-can be found at the [VirtualBox download page](https://www.virtualbox.org/wiki/Downloads).
+Setting up a repository can be performed by clicking the "Add to CI" button at
+the top of the screen.
 
-git will be used to clone the repository which contains the scripts
-and other required files.
+After clicking that, click the icon of people. (These have tooltips to describe
+what they do.) This will "upgrade" your oauth scopes with Github so that you
+can perform CI additions which require admin authorization with Github to add
+hooks, etc.
 
-ngrok will be needed if no other TLS enabled HTTP tunnel is set up.
+After that, click the "cloud" icon next to it. This will scan your repositories
+for available targets to add to CI. This process can take a little bit; there
+is a notification which will stay on the screen until the operation
+completes.
 
-#### Security considerations
+Once you've done that, you can search and click the "+" symbol next to the
+found repositories to add them to CI.
 
-This guide describes a setup which avoids transmitting tokens and
-credentials to third parties and in the clear. This is done by
-splitting hook delivery from the handling of redirects for OAuth
-authentication.
+## Adding the right files to your repository
 
-Hooks delivered for events may still contain sensitive details related
-to the tested repositories. A secure HTTPS tunnel should be set up if
-revealing any data related to the tested repositories is undesirable.
+First: add an empty file named `tinyci.yml`. This file is always read from the
+parent's master, and typically contains overrides that the administrators don't
+want the pull requesters to dink with. This file is **required**.
 
-ngrok can be used for hook delivery for a proof of concept environment
-which doesn't have such requirements.
+Second: add a file named `task.yml` at the root. Put this in it for kicks:
 
-#### Clone the repository
-
-The configuration files and scripts must be available for the next
-steps.
-
-```
-# open a terminal and clone the ci-demo repository
-$ git clone https://github.com/tinyci/ci-demo
-$ cd ci-demo
-```
-
-#### OAuth
-
-A GitHub OAuth application must be created to allow tinyCI to use the
-GitHub APIs. You can create a [new one here.](https://github.com/settings/developers)
-
-The OAuth application must have the following configuration:
-
-Homepage URL: `http://192.168.50.5:3000/`
-
-Authorization callback URL: `http://192.168.50.5:3000/uisvc/login`
-
-This ensures that GitHub redirects to the URL which is accessible only
-from the local machine.
-
-The other fields don't have an impact on functionality.
-<img src="/img/screenshots/tinyci-app-github.png" />
-
-The client ID and the client secret will be used for tinyCI's config
-file.
-
-More details about OAuth and tinyCI can be found in the [oauth](oauth)
-section of documentation.
-
-#### Hook delivery
-
-GitHub uses hooks to deliver notifications for a variety of events.
-This event delivery requires an URL where these notifications can
-be posted. The URL must be accessible over the Internet.
-
-ngrok makes it possible to bring up a reverse tunnel with TLS. Such a
-tunnel is needed to enable GitHub to deliver its hooks to the
-tinyCI installation which runs on virtual machines.
-
-ngrok should be already running, and available on the localhost and pointed at
-the destination `192.168.50.5:3000`. You can do this by entering this in your shell (and leaving it open):
-
-```
-$ ngrok tcp 192.168.50.5:3000
+```yaml
+mountpoint: '/tmp'
+runs:
+  ls:
+    command: ['ls', '-laRt']
+    image: 'ubuntu:18.04'
+  catcpu:
+    command: ['cat', '/proc/cpuinfo']
+    image: 'debian:latest'
+  catmem:
+    command: ['cat', '/proc/meminfo']
+    image: 'centos:latest'
 ```
 
-The following command will run a script which sets up the ngrok:
+This will run three tasks:
 
-```
-$ ./set_up_ngrok.sh
-```
+- `ls`, will run `ls -laRt` on an `ubuntu:18.04` image.
+- `catcpu`, will run `cat /proc/cpuinfo` on a `debian:latest` image.
+- `catmem`, will run `cat /proc/meminfo` on a `centos:latest` image.
 
-This command will print an URL when it's done. `https://abcde12345.ngrok.io`
-is an example URL which is similar to what this script will print once
-it's done running. **The URL printed by the script will be needed later
-for the tinyCI config file.**
+Each one will have its own log, separate run, and other stats and statuses
+associated with it.
 
-The script will stop and print errors instead of the URL if it fails.
-ngrok must be debugged, started and the above command needs to be run
-again to set up the tunnel.
+Commit this file to any branch of your repository and push it to github, but
+make note of the branch.
 
-#### Prepare the configuration file
+## Finally, Submit!
 
-The following config file must be updated and saved as `services.yaml`
-within the `ci-demo` directory.
+Once you've added a repository to CI, you can submit it, or **any of its
+forks** for testing. This is controlled by a capability system, but the demo
+automatically enabled those for you.
 
-The following variables must be set inside the config:
+Note that tinyCI also accepts pull requests, but the demo is incapable of
+demonstrating them at this time. Read the docs for more information on how to
+set up the `hooksvc`. Demo support coming soon!
 
-- `session_crypt_key`: must be generated
-- `token_crypt_key`: must be generated
-- `client_id`: the client ID provided by GitHub when creating the app
-- `client_secret`: the client secret provided by GitHub when creating the app
-- `actualgithubuser`: must be replaced with an actual GitHub user
-- `hook_url`: must be replaced with the URL provided by ngrok; the /hook suffix must be left as it is
+1. Click the "Submit" button at the top.
+1. Fill out the form. Enter the name of the repository without the github.com
+   component (just `tinyci/ci-agents`, for example) and then enter the SHA or
+   branch name you want to test. Checking the "Test All" button is irrelevant
+   right now.
+1. Click the arrow to continue.
 
-The `session_crypt_key` and `token_crypt_key` can be generated using the
-following command:
+After a second or two, your runs should appear as a single task in the list.
 
-```
-xxd -ps -l 32 /dev/urandom | perl -e 'undef $/; print join("", split(/\n/, <>))."\n";'
-```
+## Seeing what's there
 
-More details about these keys can be found in the [auth config](auth_config)
-section.
+Once you've got some runs showing up as a task in your task list, you can click
+the blue numbered button to dive into the run list. Each run will have a name,
+status, completion time and log button. Click the log button.
 
-`services.yaml` template:
+The log displays status of the individual run as well as the actual output from
+the program. The log is xterm-compatible and spools out to the user over a
+websocket, so they will see logs as they arrive.
 
-```
-auth:
-  session_crypt_key: 1234567890replacewithgeneratedkey
-  token_crypt_key: 1234567890replacewithsecondgeneratedkey
-  fixed_capabilities:
-    actualgithubuser:
-      - 'modify:user'
-      - 'modify:ci'
-      - 'submit'
-      - 'cancel'
-oauth:
-  client_id: "1234replacewithgithubclientid"
-  client_secret: "1234replacewithgithubclientsecret"
-  redirect_url: "http://192.168.50.5:3000/uisvc/login"
-clients:
-  datasvc: 'localhost:6000'
-  queuesvc: 'localhost:6001'
-  assetsvc: 'localhost:6002'
-  logsvc: 'localhost:6005'
-services:
-  last_scanned_wait: 1m
-  logs_root_path: /var/tinyci/logs
-websockets:
-  insecure_websockets: true
-db: 'host=localhost database=tinyci user=tinyci password=tinyci'
-hook_url: 'https://abcde12345.ngrok.io/hook'
-url: 'http://192.168.50.5:3000'
-log_requests: true
-```
+## That's it!
 
-#### Download a binary release
-
-A binary release of tinyCI needs to be downloaded and put in the
-ci-demo directory.
-
-The latest release can be found at [tinyCI releases](https:/github.com/tinyci/tinyci/releases).
-The downloaded release must be saved as `release.tar.gz` at the root of the repository.
-
-#### Bring up the environment
-
-The last step is to start the virtual machines and bring up the
-environment.
-
-```
-$ make provision
-```
-
-This command can be run again if an error is encountered.
-
-#### Log in and add the first repository
-
-The next step is to open the tinyCI web UI found at [http://192.168.50.5:3000](http://192.168.50.5:3000).
-
-The login screen should be displayed in the browser if the tinyCI instance
-has come up successfully.
-
-<img src="/img/screenshots/login.png" />
-
-You can log in and continue to read about the [repository configuration](repository_config).
+If you want to take a next step; then replace some of those `task.yml`
+definitions with real tests!

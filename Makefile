@@ -1,4 +1,4 @@
-DOCKER_PRECMD := docker run --rm --name docusaurus -it -e HOME=/tmp/home -v ${PWD}:/build -u $(shell id -u):$(shell id -g) -w /build docusaurus
+DOCKER_PRECMD := docker run --rm --name docusaurus -it -e HOME=/tmp/home -v ${PWD}:/build -u $(shell id -u):$(shell id -g) -w /build 
 
 all: build
 
@@ -8,7 +8,7 @@ start:
 	docker-compose up
 
 shell: build-image
-	$(DOCKER_PRECMD) bash
+	$(DOCKER_PRECMD) -v ${PWD}/website:/app/website docusaurus bash
 
 build-docker:
 	bash -c "cd website && \
@@ -21,7 +21,7 @@ build-image:
 	docker build -t docusaurus .
 
 build: build-image
-	$(DOCKER_PRECMD) make build-docker
+	$(DOCKER_PRECMD) docusaurus make build-docker
 
 install-github-updater:
 	go install -v ./update-github-pages

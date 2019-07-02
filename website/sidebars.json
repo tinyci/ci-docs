@@ -11,9 +11,6 @@
       "capabilities"
     ]
   },
-  "installation": {
-    "Installation Guide": ["installation"]
-  },
   "configuration": {
     "Configuration Guide": [
       "configuration",

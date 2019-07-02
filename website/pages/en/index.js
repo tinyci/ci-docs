@@ -122,16 +122,6 @@ class Index extends React.Component {
       <Block id="try" background="light">
         {[
           {
-            content: `tinyCI's Github integration is fully compatible with
-            [Github Flow](https://guides.github.com/introduction/flow/); OAuth
-            support for the entire UI toolchain through it. [Github
-            Checks](https://developer.github.com/v3/checks/) support is on the
-            way, but for now you can leverage our easy auto-configuration of
-            hooks and rich status interface.`,
-            title: 'Superior Github Integration',
-            image: `${baseUrl}img/logo-main.png`,
-          },
-          {
             content: `Check out our [demos](https://github.com/tinyci/ci-demo)
             and [releases](https://github.com/tinyci/tinyci/releases) for
             more!`,
@@ -139,6 +129,7 @@ class Index extends React.Component {
             imageAlign: 'left',
             title: 'Try it Out',
           },
+          {},
         ]}
       </Block>
     );
@@ -147,18 +138,21 @@ class Index extends React.Component {
       <Block>
         {[
           {
+            content: `tinyCI's Github integration is fully compatible with
+            [Github Flow](https://guides.github.com/introduction/flow/); OAuth
+            support for the entire UI toolchain through it. [Github
+            Checks](https://developer.github.com/v3/checks/) support is on the
+            way, but for now you can leverage our easy auto-configuration of
+            hooks and rich status interface.`,
+            title: 'Superior Github Integration',
+            image: `${baseUrl}img/installation-guide.png`,
+          },
+          {
             content:
               'Come to the [configuration guide](/docs/configuration) to learn how configure tinyCI, and to make your first tinyCI compatible repository!',
             image: `${baseUrl}img/learn-how.png`,
             imageAlign: 'left',
             title: 'Configuration Guide',
-          },
-          {
-            content:
-              'Learn how to install and maintain a small to enterprise-grade tinyCI installation.',
-            image: `${baseUrl}img/installation-guide.png`,
-            imageAlign: 'left',
-            title: 'Installation Guide',
           },
         ]}
       </Block>

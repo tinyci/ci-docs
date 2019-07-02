@@ -26,6 +26,7 @@ runs:
 This `task.yml` simply says that:
 
 1. this test run requires the `ubuntu:18.04` image
+1. Your source code will be mounted in the `/myrepo` directory.
 1. The command to be run is `ls -laRt /`. It is specified in
    array format, where an array is established containing each independent
    parameter, to avoid the need for shell quoting. If you wish to use the shell
@@ -36,16 +37,27 @@ Github.
 
 ### Adding the repository to CI
 
-In the UI, there is a "hamburger menu" on the top left -- the 3 horizontal
-lines vertically stacked.
+In the UI, there is an "Add to CI" button near the top:
 
-Once there, click the `Add` tab. This will scan your personal repository list
-and will present you with a list. It takes a while if you have a large number
-of repositories!
+<img src="/img/screenshots/add-to-ci.png" />
 
-Find your repository and check the circle next to it:
+After clicking it, you will see two buttons near the top of the pop-up menu:
 
-<img src="/img/screenshots/add.png" />
+<img src="/img/screenshots/add-actions.png" />
+
+The one on the right will upgrade your Github token so we have the power to
+populate hooks and perform other administrative actions on your repository.
+**If you have not clicked this button, the rest of this tutorial will fail to
+work**. Click the button which will redirect you to the homepage.
+
+Click "Add to CI" again and then click the button on the left. This will
+download your repository list from Github for searching.
+
+Type in the name of your repository in the search box to find it:
+
+<img src="/img/screenshots/add-search.png" />
+
+Then click the `+` next to the specific item.
 
 This will _automatically_ add the necessary webhook to Github when the add
 operation completes; a randomized hook secret is also generated in the
@@ -55,27 +67,37 @@ record.
 ### Test the run
 
 Submitting a run is the best way to see it work, so let's do that. At the top
-of the UI there is a submit dialog. It takes a Github `owner/repo` syntax name
-and a 40-char SHA **or** branch name.
+of the UI there is a submit button. Click it:
+
+<img src="/img/screenshots/submit.png" />
+
+It takes a Github `owner/repo` syntax name and a 40-char SHA **or** branch name.
 
 So type in your repository's name and branch into the Submit dialog. If you
 check the box nothing will change for now; that's the `test all` override and
 we'll talk about it later.
 
-<img src="/img/screenshots/submit.png" />
+Click the arrow to perform the submission, which takes a moment as we talk to
+Github. You do not need to wait for it to use the UI or navigate to other
+pages.
 
-Once the submission succeeds, a queue item will appear in the run list:
+<img src="/img/screenshots/submit-dialog.png" />
+
+Once the submission succeeds, a queue item will appear in the task list, you
+can drill down into that by clicking the `1` in the runs field to see the runs:
+
+<img src="/img/screenshots/task-queued.png" />
 
 <img src="/img/screenshots/run-queued.png" />
 
 You'll need to start a [runner](runner.md) at this point to reach the next two
 steps. This runner will execute your job for you, now that it's in the queue.
 
-Once it's done that you'll see a status update, like so:
+While it's running, and once it's done that you'll see status updates, like so:
 
 <img src="/img/screenshots/run-completed.png" />
 
-Note the green "PASSED" label and also take note of the button on the left --
+Note the green "PASSED" label and also take note of the button on the right --
 the grey one with a number on it. Clicking this will take you to the log file
 and other stats about that specific run. The logs are delivered as they arrive;
 once the run starts, the log is available and stream to your browser, but in
@@ -84,7 +106,7 @@ react.
 
 The log page:
 
-<img src="/img/screenshots/log-output.png" />
+<img src="/img/screenshots/ui2.png" />
 
 ### Modifying the run to do something useful
 
@@ -120,7 +142,7 @@ mountpoint: '/go/src/github.com/me/myrepo'
 runs:
   random:
     command: ['go', 'run', 'main.go']
-    image: 'golang:1.11'
+    image: 'golang:1.12'
 ```
 
 This creates a run called `random` which runs the command `go run main.go`.

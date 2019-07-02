@@ -1,0 +1,3071 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;  
+      }
+
+       
+      .field-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {  
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {  
+        width: auto;
+      }
+
+       
+      .extension-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {  
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {  
+        width: auto;
+      }
+
+       
+      .enum-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {  
+        width: auto;
+      }
+
+       
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+       
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+       
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+       
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <h1 id="title">Protocol Documentation</h1>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2fservices%2fasset%2fserver.proto">github.com/tinyci/ci-agents/ci-gen/grpc/services/asset/server.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.LogChunk"><span class="badge">M</span>LogChunk</a>
+                </li>
+              
+                <li>
+                  <a href="#.LogSend"><span class="badge">M</span>LogSend</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.Asset"><span class="badge">S</span>Asset</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2fservices%2fdata%2fserver.proto">github.com/tinyci/ci-agents/ci-gen/grpc/services/data/server.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#data.Capabilities"><span class="badge">M</span>Capabilities</a>
+                </li>
+              
+                <li>
+                  <a href="#data.CapabilityRequest"><span class="badge">M</span>CapabilityRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#data.Count"><span class="badge">M</span>Count</a>
+                </li>
+              
+                <li>
+                  <a href="#data.GithubJSON"><span class="badge">M</span>GithubJSON</a>
+                </li>
+              
+                <li>
+                  <a href="#data.ListSubscribedTasksRequest"><span class="badge">M</span>ListSubscribedTasksRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#data.Name"><span class="badge">M</span>Name</a>
+                </li>
+              
+                <li>
+                  <a href="#data.NameSearch"><span class="badge">M</span>NameSearch</a>
+                </li>
+              
+                <li>
+                  <a href="#data.OAuthState"><span class="badge">M</span>OAuthState</a>
+                </li>
+              
+                <li>
+                  <a href="#data.QueueList"><span class="badge">M</span>QueueList</a>
+                </li>
+              
+                <li>
+                  <a href="#data.QueueListRequest"><span class="badge">M</span>QueueListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#data.RefPair"><span class="badge">M</span>RefPair</a>
+                </li>
+              
+                <li>
+                  <a href="#data.RepoRef"><span class="badge">M</span>RepoRef</a>
+                </li>
+              
+                <li>
+                  <a href="#data.RepoUserSelection"><span class="badge">M</span>RepoUserSelection</a>
+                </li>
+              
+                <li>
+                  <a href="#data.RunListRequest"><span class="badge">M</span>RunListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#data.RunsForTaskRequest"><span class="badge">M</span>RunsForTaskRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#data.Search"><span class="badge">M</span>Search</a>
+                </li>
+              
+                <li>
+                  <a href="#data.TaskListRequest"><span class="badge">M</span>TaskListRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#data.Data"><span class="badge">S</span>Data</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2fservices%2flog%2fserver.proto">github.com/tinyci/ci-agents/ci-gen/grpc/services/log/server.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#log.LogMessage"><span class="badge">M</span>LogMessage</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#log.Log"><span class="badge">S</span>Log</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2fservices%2fqueue%2fserver.proto">github.com/tinyci/ci-agents/ci-gen/grpc/services/queue/server.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#queue.Submission"><span class="badge">M</span>Submission</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#queue.Queue"><span class="badge">S</span>Queue</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2fbool.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/bool.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.Bool"><span class="badge">M</span>Bool</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2ferror.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/error.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.Error"><span class="badge">M</span>Error</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2fid.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/id.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.IntID"><span class="badge">M</span>IntID</a>
+                </li>
+              
+                <li>
+                  <a href="#types.StringID"><span class="badge">M</span>StringID</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2fqueue_item.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/queue_item.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.QueueItem"><span class="badge">M</span>QueueItem</a>
+                </li>
+              
+                <li>
+                  <a href="#types.QueueRequest"><span class="badge">M</span>QueueRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#types.Status"><span class="badge">M</span>Status</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2fref.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/ref.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.Ref"><span class="badge">M</span>Ref</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2frepository.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/repository.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.Repository"><span class="badge">M</span>Repository</a>
+                </li>
+              
+                <li>
+                  <a href="#types.RepositoryList"><span class="badge">M</span>RepositoryList</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2frun.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/run.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.Run"><span class="badge">M</span>Run</a>
+                </li>
+              
+                <li>
+                  <a href="#types.RunList"><span class="badge">M</span>RunList</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2frun_settings.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/run_settings.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.RunSettings"><span class="badge">M</span>RunSettings</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2fsession.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/session.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.Session"><span class="badge">M</span>Session</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2ftask.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/task.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.CancelPRRequest"><span class="badge">M</span>CancelPRRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#types.Task"><span class="badge">M</span>Task</a>
+                </li>
+              
+                <li>
+                  <a href="#types.TaskList"><span class="badge">M</span>TaskList</a>
+                </li>
+              
+                <li>
+                  <a href="#types.TaskSettings"><span class="badge">M</span>TaskSettings</a>
+                </li>
+              
+                <li>
+                  <a href="#types.TaskSettings.RunsEntry"><span class="badge">M</span>TaskSettings.RunsEntry</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#github.com%2ftinyci%2fci-agents%2fci-gen%2fgrpc%2ftypes%2fuser.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/user.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#types.User"><span class="badge">M</span>User</a>
+                </li>
+              
+                <li>
+                  <a href="#types.UserError"><span class="badge">M</span>UserError</a>
+                </li>
+              
+                <li>
+                  <a href="#types.UserErrors"><span class="badge">M</span>UserErrors</a>
+                </li>
+              
+                <li>
+                  <a href="#types.UserList"><span class="badge">M</span>UserList</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/services/asset/server.proto">github.com/tinyci/ci-agents/ci-gen/grpc/services/asset/server.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".LogChunk">LogChunk</h3>
+        <p>Receive type</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>Chunk</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Log binary chunk; typically between 64 and 256 bytes per payload. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".LogSend">LogSend</h3>
+        <p>Sending type</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ID</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>ID of *Run* </p></td>
+                </tr>
+              
+                <tr>
+                  <td>Chunk</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Log binary chunk; typically between 64 and 256 bytes per payload. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".Asset">Asset</h3>
+        <p>Asset is the underlying layer for the assetsvc, which manages CI logs and</p><p>(soon) other file transfers.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PutLog</td>
+                <td><a href="#LogSend">.LogSend</a> stream</td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>PutLog sends a log</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetLog</td>
+                <td><a href="#types.IntID">.types.IntID</a></td>
+                <td><a href="#LogChunk">.LogChunk</a> stream</td>
+                <td><p>GetLog retrieves a log.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/services/data/server.proto">github.com/tinyci/ci-agents/ci-gen/grpc/services/data/server.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="data.Capabilities">Capabilities</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>capabilities</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>list of capabilities </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.CapabilityRequest">CapabilityRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>User ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>capability</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>name of capability (See model/user.go) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.Count">Count</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>count</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.GithubJSON">GithubJSON</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>JSON</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>Username</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>AutoCreated</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.ListSubscribedTasksRequest">ListSubscribedTasksRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>User ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>perPage</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.Name">Name</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.NameSearch">NameSearch</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.OAuthState">OAuthState</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>state</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scopes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.QueueList">QueueList</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>items</td>
+                  <td><a href="#types.QueueItem">types.QueueItem</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.QueueListRequest">QueueListRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Repository name in owner/repo format </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>perPage</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.RefPair">RefPair</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>repoName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>these are in owner/repo format </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sha</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.RepoRef">RepoRef</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>repository</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>refName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.RepoUserSelection">RepoUserSelection</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>username</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>repoName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>these are in owner/repo format </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.RunListRequest">RunListRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>repository</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Parent or Fork </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sha</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>perPage</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.RunsForTaskRequest">RunsForTaskRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Task ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>perPage</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.Search">Search</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="data.TaskListRequest">TaskListRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>repository</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Parent or Fork </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sha</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>perPage</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="data.Data">Data</h3>
+        <p>datasvc is the conduit between the other services and the database. Most of</p><p>these calls map either directly or close to the model calls.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GetErrors</td>
+                <td><a href="#data.Name">Name</a></td>
+                <td><a href="#types.UserErrors">.types.UserErrors</a></td>
+                <td><p>Retrieve User Error</p></td>
+              </tr>
+            
+              <tr>
+                <td>AddError</td>
+                <td><a href="#types.UserError">.types.UserError</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Add A User Error</p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteError</td>
+                <td><a href="#types.UserError">.types.UserError</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Delete A User Error</p></td>
+              </tr>
+            
+              <tr>
+                <td>OAuthRegisterState</td>
+                <td><a href="#data.OAuthState">OAuthState</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Register state with the database.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OAuthValidateState</td>
+                <td><a href="#data.OAuthState">OAuthState</a></td>
+                <td><a href="#data.OAuthState">OAuthState</a></td>
+                <td><p>Validate returned state within the database.</p></td>
+              </tr>
+            
+              <tr>
+                <td>QueueCount</td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><a href="#data.Count">Count</a></td>
+                <td><p>QueueCount is the count of the queue</p></td>
+              </tr>
+            
+              <tr>
+                <td>QueueCountForRepository</td>
+                <td><a href="#data.Name">Name</a></td>
+                <td><a href="#data.Count">Count</a></td>
+                <td><p>QueueCountForRepository counts by repo</p></td>
+              </tr>
+            
+              <tr>
+                <td>QueueListForRepository</td>
+                <td><a href="#data.QueueListRequest">QueueListRequest</a></td>
+                <td><a href="#data.QueueList">QueueList</a></td>
+                <td><p>QueueListForRepository produces a list for the repo of queue items.</p></td>
+              </tr>
+            
+              <tr>
+                <td>QueueAdd</td>
+                <td><a href="#data.QueueList">QueueList</a></td>
+                <td><a href="#data.QueueList">QueueList</a></td>
+                <td><p>QueueAdd adds a new QueueList of items</p></td>
+              </tr>
+            
+              <tr>
+                <td>QueueNext</td>
+                <td><a href="#types.QueueRequest">.types.QueueRequest</a></td>
+                <td><a href="#types.QueueItem">.types.QueueItem</a></td>
+                <td><p>QueueNext retrieves the next item in the queue.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PutStatus</td>
+                <td><a href="#types.Status">.types.Status</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>PutStatus sets the status of the run in the DB.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SetCancel</td>
+                <td><a href="#types.IntID">.types.IntID</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>SetCancel cancels a run.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetCancel</td>
+                <td><a href="#types.IntID">.types.IntID</a></td>
+                <td><a href="#types.Status">.types.Status</a></td>
+                <td><p>GetCancel retrieves the canceled state of the run.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetRefByNameAndSHA</td>
+                <td><a href="#data.RefPair">RefPair</a></td>
+                <td><a href="#types.Ref">.types.Ref</a></td>
+                <td><p>Given a name and sha, look up the ref.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PutRef</td>
+                <td><a href="#types.Ref">.types.Ref</a></td>
+                <td><a href="#types.Ref">.types.Ref</a></td>
+                <td><p>PutRef saves a ref.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CancelRefByName</td>
+                <td><a href="#data.RepoRef">RepoRef</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>CancelRefByName cancels by branch or tag name.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CancelTask</td>
+                <td><a href="#types.IntID">.types.IntID</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>CancelTask cancels the branch by task ID.</p></td>
+              </tr>
+            
+              <tr>
+                <td>EnableRepository</td>
+                <td><a href="#data.RepoUserSelection">RepoUserSelection</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Enables repository for testing in CI</p></td>
+              </tr>
+            
+              <tr>
+                <td>DisableRepository</td>
+                <td><a href="#data.RepoUserSelection">RepoUserSelection</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Disables repository for testing in CI</p></td>
+              </tr>
+            
+              <tr>
+                <td>SaveRepositories</td>
+                <td><a href="#data.GithubJSON">GithubJSON</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Given a JSON list of github responses; save all the repos.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PrivateRepositories</td>
+                <td><a href="#data.NameSearch">NameSearch</a></td>
+                <td><a href="#types.RepositoryList">.types.RepositoryList</a></td>
+                <td><p>List all Private Repositories for the user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OwnedRepositories</td>
+                <td><a href="#data.NameSearch">NameSearch</a></td>
+                <td><a href="#types.RepositoryList">.types.RepositoryList</a></td>
+                <td><p>List all Owned Repositories for the user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>AllRepositories</td>
+                <td><a href="#data.NameSearch">NameSearch</a></td>
+                <td><a href="#types.RepositoryList">.types.RepositoryList</a></td>
+                <td><p>List all repositories for the user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PublicRepositories</td>
+                <td><a href="#data.Search">Search</a></td>
+                <td><a href="#types.RepositoryList">.types.RepositoryList</a></td>
+                <td><p>List all public repositories.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetRepository</td>
+                <td><a href="#data.Name">Name</a></td>
+                <td><a href="#types.Repository">.types.Repository</a></td>
+                <td><p>Get a specific repository by name.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RunCount</td>
+                <td><a href="#data.RefPair">RefPair</a></td>
+                <td><a href="#data.Count">Count</a></td>
+                <td><p>Count of runs for the given ref pair</p></td>
+              </tr>
+            
+              <tr>
+                <td>RunList</td>
+                <td><a href="#data.RunListRequest">RunListRequest</a></td>
+                <td><a href="#types.RunList">.types.RunList</a></td>
+                <td><p>List the runs</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetRun</td>
+                <td><a href="#types.IntID">.types.IntID</a></td>
+                <td><a href="#types.Run">.types.Run</a></td>
+                <td><p>Get a specific Run</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetRunUI</td>
+                <td><a href="#types.IntID">.types.IntID</a></td>
+                <td><a href="#types.Run">.types.Run</a></td>
+                <td><p>Get a specific Run with security details omitted; for UI work.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PutSession</td>
+                <td><a href="#types.Session">.types.Session</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>PutSession saves the session.</p></td>
+              </tr>
+            
+              <tr>
+                <td>LoadSession</td>
+                <td><a href="#types.StringID">.types.StringID</a></td>
+                <td><a href="#types.Session">.types.Session</a></td>
+                <td><p>LoadSession loads the session.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RemoveSubscription</td>
+                <td><a href="#data.RepoUserSelection">RepoUserSelection</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>removes the subscription from the user&#39;s account.</p></td>
+              </tr>
+            
+              <tr>
+                <td>AddSubscription</td>
+                <td><a href="#data.RepoUserSelection">RepoUserSelection</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>adds a subscription.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListSubscriptions</td>
+                <td><a href="#data.NameSearch">NameSearch</a></td>
+                <td><a href="#types.RepositoryList">.types.RepositoryList</a></td>
+                <td><p>lists all the subscriptions for the user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PutTask</td>
+                <td><a href="#types.Task">.types.Task</a></td>
+                <td><a href="#types.Task">.types.Task</a></td>
+                <td><p>Add a task to the db.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListTasks</td>
+                <td><a href="#data.TaskListRequest">TaskListRequest</a></td>
+                <td><a href="#types.TaskList">.types.TaskList</a></td>
+                <td><p>List Tasks</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListSubscribedTasksForUser</td>
+                <td><a href="#data.ListSubscribedTasksRequest">ListSubscribedTasksRequest</a></td>
+                <td><a href="#types.TaskList">.types.TaskList</a></td>
+                <td><p>List tasks only in the user&#39;s subscription list.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CountTasks</td>
+                <td><a href="#data.TaskListRequest">TaskListRequest</a></td>
+                <td><a href="#data.Count">Count</a></td>
+                <td><p>Count Tasks</p></td>
+              </tr>
+            
+              <tr>
+                <td>CancelTasksByPR</td>
+                <td><a href="#types.CancelPRRequest">.types.CancelPRRequest</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>cancel a task by pull request ID</p></td>
+              </tr>
+            
+              <tr>
+                <td>RunsForTask</td>
+                <td><a href="#data.RunsForTaskRequest">RunsForTaskRequest</a></td>
+                <td><a href="#types.RunList">.types.RunList</a></td>
+                <td><p>get all runs associated with the task.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CountRunsForTask</td>
+                <td><a href="#types.IntID">.types.IntID</a></td>
+                <td><a href="#data.Count">Count</a></td>
+                <td><p>Count all associated runs with the task.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UserByName</td>
+                <td><a href="#data.Name">Name</a></td>
+                <td><a href="#types.User">.types.User</a></td>
+                <td><p>Get a user by name</p></td>
+              </tr>
+            
+              <tr>
+                <td>PatchUser</td>
+                <td><a href="#types.User">.types.User</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Update a user -- currently only accepts token changes.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PutUser</td>
+                <td><a href="#types.User">.types.User</a></td>
+                <td><a href="#types.User">.types.User</a></td>
+                <td><p>Create a user</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListUsers</td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><a href="#types.UserList">.types.UserList</a></td>
+                <td><p>List all users.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetToken</td>
+                <td><a href="#data.Name">Name</a></td>
+                <td><a href="#types.StringID">.types.StringID</a></td>
+                <td><p>Get a auth token (not oauth)</p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteToken</td>
+                <td><a href="#data.Name">Name</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Delete the auth token</p></td>
+              </tr>
+            
+              <tr>
+                <td>ValidateToken</td>
+                <td><a href="#types.StringID">.types.StringID</a></td>
+                <td><a href="#types.User">.types.User</a></td>
+                <td><p>Validate the auth token -- returns the user if successful</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetCapabilities</td>
+                <td><a href="#types.User">.types.User</a></td>
+                <td><a href="#data.Capabilities">Capabilities</a></td>
+                <td><p>Retrieves the capabilities for a user</p></td>
+              </tr>
+            
+              <tr>
+                <td>HasCapability</td>
+                <td><a href="#data.CapabilityRequest">CapabilityRequest</a></td>
+                <td><a href="#types.Bool">.types.Bool</a></td>
+                <td><p>Returns true if the user has the capability</p></td>
+              </tr>
+            
+              <tr>
+                <td>AddCapability</td>
+                <td><a href="#data.CapabilityRequest">CapabilityRequest</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Adds the capability for the user</p></td>
+              </tr>
+            
+              <tr>
+                <td>RemoveCapability</td>
+                <td><a href="#data.CapabilityRequest">CapabilityRequest</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Removes the capability from the user</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/services/log/server.proto">github.com/tinyci/ci-agents/ci-gen/grpc/services/log/server.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="log.LogMessage">LogMessage</h3>
+        <p>LogMessage is a log message in struct form.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Time of log </p></td>
+                </tr>
+              
+                <tr>
+                  <td>level</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Level of log (debug, info, error are supported) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fields</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Fields in map[string]interface{} format </p></td>
+                </tr>
+              
+                <tr>
+                  <td>service</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Service name </p></td>
+                </tr>
+              
+                <tr>
+                  <td>message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Message </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="log.Log">Log</h3>
+        <p>Log is the logsvc which is responsible for managing log messages.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Put</td>
+                <td><a href="#log.LogMessage">LogMessage</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>send a log message to the logsvc.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/services/queue/server.proto">github.com/tinyci/ci-agents/ci-gen/grpc/services/queue/server.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="queue.Submission">Submission</h3>
+        <p>Submission controls the submission of branches and pull requests. Some</p><p>(noted) properties are not externally modifiable, so they will result in a</p><p>noop if set.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>parent</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Parent repository </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fork</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Fork repository </p></td>
+                </tr>
+              
+                <tr>
+                  <td>headsha</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>HEAD SHA -- usually the head of the fork </p></td>
+                </tr>
+              
+                <tr>
+                  <td>basesha</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Base SHA -- usually the head of the parent </p></td>
+                </tr>
+              
+                <tr>
+                  <td>submitted_by</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Who submitted this? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pull_request</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>PullRequest ID if available -- not set during manual submissions </p></td>
+                </tr>
+              
+                <tr>
+                  <td>all</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Test all instead of using diff selection; this is a flag in the UI and can also be triggered by tinycli. It is not used in github hooks except for pushes to master. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>manual</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Flag set if this was a manual submission. Typically managed by the uisvc. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="queue.Queue">Queue</h3>
+        <p>Queue corresponds to the queuesvc, which is used for managing incoming</p><p>results from the hooksvc (github hooks). Runners hit this as well to send</p><p>states and get next queue items.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PutStatus</td>
+                <td><a href="#types.Status">.types.Status</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>NextQueueItem</td>
+                <td><a href="#types.QueueRequest">.types.QueueRequest</a></td>
+                <td><a href="#types.QueueItem">.types.QueueItem</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Submit</td>
+                <td><a href="#queue.Submission">Submission</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SetCancel</td>
+                <td><a href="#types.IntID">.types.IntID</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetCancel</td>
+                <td><a href="#types.IntID">.types.IntID</a></td>
+                <td><a href="#types.Status">.types.Status</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/bool.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/bool.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.Bool">Bool</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>result</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>result of boolean query </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/error.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/error.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.Error">Error</h3>
+        <p>Errors that occur within the program's calls after a request. Bound to the</p><p>user, not the connection.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>errors</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>list of errors that occurred </p></td>
+                </tr>
+              
+                <tr>
+                  <td>log</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>whether or not the error is intended to be logged; used internally by some functions. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/id.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/id.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.IntID">IntID</h3>
+        <p>IntID is a basic integer ID -- it's used to control a variety of things that</p><p>use basic sequences and so forth.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ID</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>ID is the ID. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.StringID">StringID</h3>
+        <p>StringID is just like types.IntID but instead it's a string!</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ID</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ID is the ID. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/queue_item.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/queue_item.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.QueueItem">QueueItem</h3>
+        <p>QueueItems are the subject sent to runners when runners are able to execute</p><p>a job. Runners poll for these endless through the queuesvc.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>ID of queue item </p></td>
+                </tr>
+              
+                <tr>
+                  <td>running</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Is the job running? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>runningOn</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>What host is it running on </p></td>
+                </tr>
+              
+                <tr>
+                  <td>startedAt</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>When did it start? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>queueName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The name of the queue </p></td>
+                </tr>
+              
+                <tr>
+                  <td>run</td>
+                  <td><a href="#types.Run">Run</a></td>
+                  <td></td>
+                  <td><p>The run itself. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.QueueRequest">QueueRequest</h3>
+        <p>QueueRequest is issued by runners to the queuesvc.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>queueName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>runningOn</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.Status">Status</h3>
+        <p>Status is reported to the queuesvc on completion of a run.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>additionalMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/ref.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/ref.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.Ref">Ref</h3>
+        <p>Ref is the encapsulation of a git ref and communicates repository as well as version information.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Internal ID of ref </p></td>
+                </tr>
+              
+                <tr>
+                  <td>repository</td>
+                  <td><a href="#types.Repository">Repository</a></td>
+                  <td></td>
+                  <td><p>Repository the ref belongs to (typically, the fork) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>refName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>RefName is the name of the ref (branch, tag) if determined. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sha</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>SHA is the SHA of the latest commit in the ref. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/repository.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/repository.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.Repository">Repository</h3>
+        <p>Repository is the model for a github repository.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>ID is the internal ID of the repository </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name is the string name of the repository, in owner/repo format </p></td>
+                </tr>
+              
+                <tr>
+                  <td>private</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Private tells the CI system to not expose this repository for subscription, unless they are an owner. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>disabled</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Disabled is true by default; and indicates whether or not the repository is disabled from testing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#types.User">User</a></td>
+                  <td></td>
+                  <td><p>Owner is the user who can manipulate this repository, as well as those whose keys will be used for testing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>autoCreated</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>AutoCreated is the flag that demonstrates this was created from a repo scan and not added manually. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>hookSecret</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>HookSecret is the secret populated into the github webhooks; and validated by us on incoming hook requests. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>github</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>JSON covering the entire repository&#39;s properties, when gathered from Github. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.RepositoryList">RepositoryList</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>list</td>
+                  <td><a href="#types.Repository">Repository</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/run.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/run.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.Run">Run</h3>
+        <p>Run is a single CI run, intended to be sent to a runner.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>ID is the internal ID of the run. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name is the name of the run. Typically this is in `dir:run_name` format. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>createdAt</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>When was this run created </p></td>
+                </tr>
+              
+                <tr>
+                  <td>startedAt</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>When did this run start </p></td>
+                </tr>
+              
+                <tr>
+                  <td>finishedAt</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>When did this run finish </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>What is the status of this run </p></td>
+                </tr>
+              
+                <tr>
+                  <td>statusSet</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Is the status valid? (nil internally for invalid settings, but proto doesn&#39;t like nil) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#types.RunSettings">RunSettings</a></td>
+                  <td></td>
+                  <td><p>The settings for the Run (image, command etc) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>task</td>
+                  <td><a href="#types.Task">Task</a></td>
+                  <td></td>
+                  <td><p>Task for the Run. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.RunList">RunList</h3>
+        <p>RunList is just an array of runs</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>list</td>
+                  <td><a href="#types.Run">Run</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of runs! </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/run_settings.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/run_settings.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.RunSettings">RunSettings</h3>
+        <p>RunSettings covers all the features that tinyCI supports to manage runs and</p><p>execute them.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>command</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Command is the command in execv() form (array of strings) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>image</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Image is an arbitrary image name, the overlay runner needs docker registry format </p></td>
+                </tr>
+              
+                <tr>
+                  <td>queue</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Queue is the name of the queue this run should be placed in. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Metadata is a free form grab-bag of properties for runners to use. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name is the name of the run </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timeout</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Timeout is the timeout, in seconds, to wait before automatically canceling a run. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/session.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/session.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.Session">Session</h3>
+        <p>Session is a session key/value pair as well as an expiry time for the</p><p>session. All values are encrypted with the session key.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The key </p></td>
+                </tr>
+              
+                <tr>
+                  <td>values</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The value </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiresOn</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>When it expires </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/task.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/task.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.CancelPRRequest">CancelPRRequest</h3>
+        <p>CancelPRRequest is used in CancelTasksByPR in the datasvc; can be used to</p><p>cancel all runs for a PR.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>repository</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.Task">Task</h3>
+        <p>Task corresponds to directories within the tree that have a `task.yml`</p><p>placed in them. Each task is decomposed into runs, and this record is</p><p>created indicating the group of them, as well as properties they share.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>ID of the task </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parent</td>
+                  <td><a href="#types.Repository">Repository</a></td>
+                  <td></td>
+                  <td><p>Parent Repository </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#types.Ref">Ref</a></td>
+                  <td></td>
+                  <td><p>Associated Ref to be tested </p></td>
+                </tr>
+              
+                <tr>
+                  <td>baseSHA</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>BaseSHA for diff </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pullRequestID</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>A pull request ID for PR events; 0 otherwise </p></td>
+                </tr>
+              
+                <tr>
+                  <td>canceled</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Was the run canceled? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>finishedAt</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>When did it finish? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>createdAt</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>When was it created? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>startedAt</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>When did it start </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>What is the status? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>statusSet</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Is the status valid? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#types.TaskSettings">TaskSettings</a></td>
+                  <td></td>
+                  <td><p>TaskSettings associated with the task (parsed task.yml) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>dirname of the task.yml </p></td>
+                </tr>
+              
+                <tr>
+                  <td>runs</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>count of runs for this task </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.TaskList">TaskList</h3>
+        <p>TaskList is simply a repeated list of tasks.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>Tasks</td>
+                  <td><a href="#types.Task">Task</a></td>
+                  <td>repeated</td>
+                  <td><p>List of tasks </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.TaskSettings">TaskSettings</h3>
+        <p>TaskSettings is the parsed representation to struct of task.yml files.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>mountpoint</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Mountpoint to use for the source code inside the container </p></td>
+                </tr>
+              
+                <tr>
+                  <td>env</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Environment variables -- in environ syntax. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>workdir</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Working dir inside the container; defaults to mountpoint </p></td>
+                </tr>
+              
+                <tr>
+                  <td>runs</td>
+                  <td><a href="#types.TaskSettings.RunsEntry">TaskSettings.RunsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Map of run name -&gt; run settings, used for defining runs to create </p></td>
+                </tr>
+              
+                <tr>
+                  <td>defaultTimeout</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Default Timeout if none is specified </p></td>
+                </tr>
+              
+                <tr>
+                  <td>defaultQueue</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Default Queue is none is specified; otherwise this is &#39;default&#39; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>defaultImage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Default Image to use in runs. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Free-form metadata to be returned to runners. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>dependencies</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Dependency list. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.TaskSettings.RunsEntry">TaskSettings.RunsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#types.RunSettings">RunSettings</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="github.com/tinyci/ci-agents/ci-gen/grpc/types/user.proto">github.com/tinyci/ci-agents/ci-gen/grpc/types/user.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="types.User">User</h3>
+        <p>User is ... a user record</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>ID of user </p></td>
+                </tr>
+              
+                <tr>
+                  <td>username</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Username -- retrieved from github </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lastScannedRepos</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>This flag is used to described when someone last scanned repositories for adding to CI. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>errors</td>
+                  <td><a href="#types.UserError">UserError</a></td>
+                  <td>repeated</td>
+                  <td><p>Errors for the user. See types.Errors </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tokenJSON</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>JSON corresponding to the oauth2 response from github when first signing
+up; this contains an access and refresh token. Encrypted with the token
+key. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.UserError">UserError</h3>
+        <p>UserError is the pre-converted UserError record. It is later converted to a types.Error.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>userID</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.UserErrors">UserErrors</h3>
+        <p>List of UserError</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>errors</td>
+                  <td><a href="#types.UserError">UserError</a></td>
+                  <td>repeated</td>
+                  <td><p>the list! </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="types.UserList">UserList</h3>
+        <p>List of Users</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>users</td>
+                  <td><a href="#types.User">User</a></td>
+                  <td>repeated</td>
+                  <td><p>the list! </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++ Type</td><td>Java Type</td><td>Python Type</td></tr>
+      </thead>
+      <tbody>
+        
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+          </tr>
+        
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+          </tr>
+        
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+          </tr>
+        
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+          </tr>
+        
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+          </tr>
+        
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+          </tr>
+        
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+          </tr>
+        
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+          </tr>
+        
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </body>
+</html>
+

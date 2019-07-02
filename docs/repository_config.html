@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Repository Configuration · tinyCI</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Assuming you have configured your services properly and booted them,&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Repository Configuration · tinyCI"/><meta property="og:type" content="website"/><meta property="og:url" content="https://tinyci.org/"/><meta property="og:description" content="&lt;p&gt;Assuming you have configured your services properly and booted them,&lt;/p&gt;
+"/><meta property="og:image" content="https://tinyci.org/img/logo-mains.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://tinyci.org/img/logo-main.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/zenburn.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-139424969-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-reverse-title.png" alt="tinyCI"/><h2 class="headerTitleWithLogo">tinyCI</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/intro" target="_self">Intro</a></li><li class="siteNavGroupActive"><a href="/docs/configuration" target="_self">Configuration Guide</a></li><li class=""><a href="/docs/api" target="_self">API</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Configuration Guide</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Configuration Guide</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/configuration">Configuration Guide Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/oauth">tinyCI OAuth</a></li><li class="navListItem"><a class="navItem" href="/docs/auth_config">Configuring the Authentication Settings</a></li><li class="navListItem"><a class="navItem" href="/docs/tls_authentication">Using TLS Authentication for the Service Mesh</a></li><li class="navListItem"><a class="navItem" href="/docs/client_config">Client Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/service_config">Service Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/hooksvc_config">Configuration of the hooksvc</a></li><li class="navListItem"><a class="navItem" href="/docs/runner_config">Configuring the Runners</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/repository_config">Repository Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/repository_properties">Repository Configuration Properties</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Repository Configuration</h1></header><article><div><span><p>Assuming you have configured your services properly and booted them,
+configuration of your first repository will be the next step.</p>
+<h2><a class="anchor" aria-hidden="true" id="configuration-instructions"></a><a href="#configuration-instructions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration Instructions</h2>
+<p>First things first, we need to create some configuration files in the
+repository. Create a file called <code>tinyci.yml</code> at the root of your repository,
+and leave it blank for now.</p>
+<p>Create another file at the root called <code>task.yml</code>. Let's put this in there for
+now, but don't fret; we'll edit it in a minute.</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">mountpoint:</span> <span class="hljs-string">'/myrepo'</span>
+<span class="hljs-attr">runs:</span>
+<span class="hljs-attr">  ls:</span>
+<span class="hljs-attr">    command:</span> <span class="hljs-string">['ls',</span> <span class="hljs-string">'-laRt'</span><span class="hljs-string">,</span> <span class="hljs-string">'/'</span><span class="hljs-string">]</span>
+<span class="hljs-attr">    image:</span> <span class="hljs-string">'ubuntu:18.04'</span>
+</code></pre>
+<p>This <code>task.yml</code> simply says that:</p>
+<ol>
+<li>this test run requires the <code>ubuntu:18.04</code> image</li>
+<li>Your source code will be mounted in the <code>/myrepo</code> directory.</li>
+<li>The command to be run is <code>ls -laRt /</code>. It is specified in
+array format, where an array is established containing each independent
+parameter, to avoid the need for shell quoting. If you wish to use the shell
+instead, just populate this with something like: <code>[ 'bash', '-c', 'command...' ]</code>.</li>
+</ol>
+<p>Ok, add these files to your repository and push them to your <code>master</code> branch on
+Github.</p>
+<h3><a class="anchor" aria-hidden="true" id="adding-the-repository-to-ci"></a><a href="#adding-the-repository-to-ci" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding the repository to CI</h3>
+<p>In the UI, there is an &quot;Add to CI&quot; button near the top:</p>
+<p><img src="/img/screenshots/add-to-ci.png" /></p>
+<p>After clicking it, you will see two buttons near the top of the pop-up menu:</p>
+<p><img src="/img/screenshots/add-actions.png" /></p>
+<p>The one on the right will upgrade your Github token so we have the power to
+populate hooks and perform other administrative actions on your repository.
+<strong>If you have not clicked this button, the rest of this tutorial will fail to
+work</strong>. Click the button which will redirect you to the homepage.</p>
+<p>Click &quot;Add to CI&quot; again and then click the button on the left. This will
+download your repository list from Github for searching.</p>
+<p>Type in the name of your repository in the search box to find it:</p>
+<p><img src="/img/screenshots/add-search.png" /></p>
+<p>Then click the <code>+</code> next to the specific item.</p>
+<p>This will <em>automatically</em> add the necessary webhook to Github when the add
+operation completes; a randomized hook secret is also generated in the
+populated webhook; our <code>hooksvc</code> validates that against the local database's
+record.</p>
+<h3><a class="anchor" aria-hidden="true" id="test-the-run"></a><a href="#test-the-run" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test the run</h3>
+<p>Submitting a run is the best way to see it work, so let's do that. At the top
+of the UI there is a submit button. Click it:</p>
+<p><img src="/img/screenshots/submit.png" /></p>
+<p>It takes a Github <code>owner/repo</code> syntax name and a 40-char SHA <strong>or</strong> branch name.</p>
+<p>So type in your repository's name and branch into the Submit dialog. If you
+check the box nothing will change for now; that's the <code>test all</code> override and
+we'll talk about it later.</p>
+<p>Click the arrow to perform the submission, which takes a moment as we talk to
+Github. You do not need to wait for it to use the UI or navigate to other
+pages.</p>
+<p><img src="/img/screenshots/submit-dialog.png" /></p>
+<p>Once the submission succeeds, a queue item will appear in the task list, you
+can drill down into that by clicking the <code>1</code> in the runs field to see the runs:</p>
+<p><img src="/img/screenshots/task-queued.png" /></p>
+<p><img src="/img/screenshots/run-queued.png" /></p>
+<p>You'll need to start a <a href="/docs/runner">runner</a> at this point to reach the next two
+steps. This runner will execute your job for you, now that it's in the queue.</p>
+<p>While it's running, and once it's done that you'll see status updates, like so:</p>
+<p><img src="/img/screenshots/run-completed.png" /></p>
+<p>Note the green &quot;PASSED&quot; label and also take note of the button on the right --
+the grey one with a number on it. Clicking this will take you to the log file
+and other stats about that specific run. The logs are delivered as they arrive;
+once the run starts, the log is available and stream to your browser, but in
+this case, this likely happened much faster than you had time to notice and
+react.</p>
+<p>The log page:</p>
+<p><img src="/img/screenshots/ui2.png" /></p>
+<h3><a class="anchor" aria-hidden="true" id="modifying-the-run-to-do-something-useful"></a><a href="#modifying-the-run-to-do-something-useful" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Modifying the run to do something useful</h3>
+<p>Ok, let's make the run do something interesting. Let's add a small go program
+to our repository:</p>
+<pre><code class="hljs css language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">"math/rand"</span>
+    <span class="hljs-string">"os"</span>
+    <span class="hljs-string">"time"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    r := rand.New(rand.NewSource(time.Now().Unix()))
+
+    time.Sleep(r.Intn(<span class="hljs-number">10</span>) * time.Second)
+
+    <span class="hljs-keyword">if</span> r.Int()%<span class="hljs-number">2</span> == <span class="hljs-number">0</span> {
+        os.Exit(<span class="hljs-number">0</span>)
+    }
+
+    os.Exit(<span class="hljs-number">1</span>)
+}
+</code></pre>
+<p>And modify our <code>task.yml</code> like so:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">mountpoint:</span> <span class="hljs-string">'/go/src/github.com/me/myrepo'</span>
+<span class="hljs-attr">runs:</span>
+<span class="hljs-attr">  random:</span>
+<span class="hljs-attr">    command:</span> <span class="hljs-string">['go',</span> <span class="hljs-string">'run'</span><span class="hljs-string">,</span> <span class="hljs-string">'main.go'</span><span class="hljs-string">]</span>
+<span class="hljs-attr">    image:</span> <span class="hljs-string">'golang:1.12'</span>
+</code></pre>
+<p>This creates a run called <code>random</code> which runs the command <code>go run main.go</code>.
+Your code is mounted at <code>/go/src/github.com/me/myrepo</code> and the <code>$GOPATH</code> is
+configured to use <code>/go</code> by default in the <code>golang</code> docker image used.</p>
+<p>Note that this program's only output is the exit status in the event it is
+non-zero; for successful runs, it will print nothing.</p>
+<p>The go program itself will fail half the time statistically, so if we submit a
+lot of runs, we see some runs both pass and fail. It will sleep for a random
+duration as well to allow you to see tinyCI's reactions to changes and try out
+things like cancellation and auto-cancellation from a new push.</p>
+<p>Let's commit this change. We can either submit a pull request from a fork or
+non-master branch, or push directly to master to trigger tests.</p>
+<p>Please check the next section out for a full listing of controls in <code>task.yml</code>
+and <code>tinyci.yml</code>.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/runner_config"><span class="arrow-prev">← </span><span>Configuring the Runners</span></a><a class="docs-next button" href="/docs/repository_properties"><span>Repository Configuration Properties</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#configuration-instructions">Configuration Instructions</a><ul class="toc-headings"><li><a href="#adding-the-repository-to-ci">Adding the repository to CI</a></li><li><a href="#test-the-run">Test the run</a></li><li><a href="#modifying-the-run-to-do-something-useful">Modifying the run to do something useful</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo-reverse.png" alt="tinyCI" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/intro.html">Getting Started</a><a href="/docs/en/installation.html">Installation Guide</a><a href="/docs/en/configuration.html">Configuration Guide</a><a href="/docs/en/api.html">API Reference</a></div><div><h5>Community</h5><a target="_blank" href="https://discord.gg/Y5tpxhU">Project Chat</a><a href="https://twitter.com/tinyci2" target="_blank" rel="noreferrer noopener">tinyCI Twitter</a></div><div><h5>More</h5><a class="github-button" href="https://github.com/tinyci/tinyci" data-icon="octicon-star" data-count-href="https://github.com/tinyci/tinyci/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star us on Github</a></div></section><section class="copyright">Copyright © 2019 Erik Hollensbe</section></footer></div></body></html>

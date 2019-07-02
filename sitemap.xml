@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://tinyci.org/help</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/en/help" /> </url>
+<url> <loc>https://tinyci.org/index</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/en/index" /> </url>
+<url> <loc>https://tinyci.org/users</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/en/users" /> </url>
+<url> <loc>https://tinyci.org/docs/api</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/api" /> </url>
+<url> <loc>https://tinyci.org/docs/auth_config</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/auth_config" /> </url>
+<url> <loc>https://tinyci.org/docs/capabilities</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/capabilities" /> </url>
+<url> <loc>https://tinyci.org/docs/client_config</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/client_config" /> </url>
+<url> <loc>https://tinyci.org/docs/clients</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/clients" /> </url>
+<url> <loc>https://tinyci.org/docs/configuration</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/configuration" /> </url>
+<url> <loc>https://tinyci.org/docs/diff_selection</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/diff_selection" /> </url>
+<url> <loc>https://tinyci.org/docs/hooksvc_config</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/hooksvc_config" /> </url>
+<url> <loc>https://tinyci.org/docs/installation</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/installation" /> </url>
+<url> <loc>https://tinyci.org/docs/intro</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/intro" /> </url>
+<url> <loc>https://tinyci.org/docs/oauth</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/oauth" /> </url>
+<url> <loc>https://tinyci.org/docs/overview</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/overview" /> </url>
+<url> <loc>https://tinyci.org/docs/queues</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/queues" /> </url>
+<url> <loc>https://tinyci.org/docs/repository_config</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/repository_config" /> </url>
+<url> <loc>https://tinyci.org/docs/repository_properties</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/repository_properties" /> </url>
+<url> <loc>https://tinyci.org/docs/runner_config</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/runner_config" /> </url>
+<url> <loc>https://tinyci.org/docs/runner</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/runner" /> </url>
+<url> <loc>https://tinyci.org/docs/service_config</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/service_config" /> </url>
+<url> <loc>https://tinyci.org/docs/terminology</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/terminology" /> </url>
+<url> <loc>https://tinyci.org/docs/tls_authentication</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://tinyci.org/docs/tls_authentication" /> </url>
+</urlset>

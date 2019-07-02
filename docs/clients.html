@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>TinyCI Clients · tinyCI</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;TinyCI has two official clients: the React UI and &lt;code&gt;tinycli&lt;/code&gt;. UIs need to be&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="TinyCI Clients · tinyCI"/><meta property="og:type" content="website"/><meta property="og:url" content="https://tinyci.org/"/><meta property="og:description" content="&lt;p&gt;TinyCI has two official clients: the React UI and &lt;code&gt;tinycli&lt;/code&gt;. UIs need to be&lt;/p&gt;
+"/><meta property="og:image" content="https://tinyci.org/img/logo-mains.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://tinyci.org/img/logo-main.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/zenburn.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-139424969-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-reverse-title.png" alt="tinyCI"/><h2 class="headerTitleWithLogo">tinyCI</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/intro" target="_self">Intro</a></li><li class=""><a href="/docs/configuration" target="_self">Configuration Guide</a></li><li class=""><a href="/docs/api" target="_self">API</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Overview</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Set up tinyCI</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/intro">Intro</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/terminology">Terminology</a></li><li class="navListItem"><a class="navItem" href="/docs/overview">Services Overview</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/clients">TinyCI Clients</a></li><li class="navListItem"><a class="navItem" href="/docs/runner">CI Runners</a></li><li class="navListItem"><a class="navItem" href="/docs/queues">Named Queues</a></li><li class="navListItem"><a class="navItem" href="/docs/diff_selection">Diff Selection</a></li><li class="navListItem"><a class="navItem" href="/docs/capabilities">User Capabilities</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">TinyCI Clients</h1></header><article><div><span><p>TinyCI has two official clients: the React UI and <code>tinycli</code>. UIs need to be
+able to react the <code>uisvc</code> to interact with tinyCI.</p>
+<h2><a class="anchor" aria-hidden="true" id="react-ui"></a><a href="#react-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React UI</h2>
+<p>The React UI is a web interface written in the react javascript toolkit. It
+uses the same functions and calls that the other components do to reap its
+data.</p>
+<p>Unlike tinycli, the react UI exposes functionality based on
+<a href="capabilities">capabilities</a>.</p>
+<p><h6>(Please note all image links open in a new window)</h6></p>
+<p><a href="../img/screenshots/ui1.png" target="_blank"><img width="80%" src="../img/screenshots/ui1.png" /></a></p>
+<h3><a class="anchor" aria-hidden="true" id="adding-a-repository-to-ci"></a><a href="#adding-a-repository-to-ci" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding a repository to CI</h3>
+<p>See <a href="repository_config">Repository Configuration</a> for more information.</p>
+<h3><a class="anchor" aria-hidden="true" id="submitting-a-repository"></a><a href="#submitting-a-repository" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Submitting a repository</h3>
+<p>If you have the <code>submit</code> <a href="capabilities">capability</a>, you can click the &quot;submit&quot;
+button at the top to get a dialog to submit your repository (or fork) and
+branch (or SHA). Clicking the &quot;Test All&quot; button will override diff selection
+for this run.</p>
+<h3><a class="anchor" aria-hidden="true" id="filtering-the-list"></a><a href="#filtering-the-list" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Filtering the list</h3>
+<p>You can click the &quot;All repositories&quot; drop down to select individual
+repositories that have been added to the CI system. Clicking on these names
+will filter the task list or run list based on that repository's runs alone. If
+you &quot;subscribe&quot; to a repository, you will see them in the list of selectable
+repos.</p>
+<p>In the future the subscription will be used to display an amalgamated list of
+all repositories that have been subscribed to. This feature is currently
+unfinished.</p>
+<h3><a class="anchor" aria-hidden="true" id="getting-runs-for-your-tasks-and-logs-for-your-runs"></a><a href="#getting-runs-for-your-tasks-and-logs-for-your-runs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Getting runs for your tasks, and logs for your runs</h3>
+<p>To get the list of runs for each task, click the numbered button under the &quot;Runs&quot; column.</p>
+<p><a href="../img/screenshots/task_item.png" target="_blank"><img src="../img/screenshots/task_item.png" /></a></p>
+<p>This will display a similar looking list for each run in the task's group of runs.</p>
+<p><a href="../img/screenshots/run_item.png" target="_blank"><img src="../img/screenshots/run_item.png" /></a></p>
+<p>From there, you can proceed to click on the &quot;Log&quot; item to get at the CI's log
+of the test run.</p>
+<p><a href="../img/screenshots/ui2.png" target="_blank"><img width="80%" src="../img/screenshots/ui2.png" /></a></p>
+<p>The log is an xterm emulator so animations and colors will display prominently.
+If you need a plaintext description of the log, use <code>tinycli</code> for now to get
+that log, future support for this is coming.</p>
+<h2><a class="anchor" aria-hidden="true" id="tinycli"></a><a href="#tinycli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>tinycli</h2>
+<p><code>tinycli</code> is a command-line client that works anywhere
+<a href="https://golang.org">golang</a> does.</p>
+<p>The rest of this section covers the bootstrap and usage of the tinycli tool.</p>
+<h3><a class="anchor" aria-hidden="true" id="getting-a-release"></a><a href="#getting-a-release" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Getting a release</h3>
+<p>Releases can be found on the <a href="https://github.com/tinyci/ci-agents/releases">ci-agents releases page</a>. Download the correct
+version for your platform, and enjoy.</p>
+<h3><a class="anchor" aria-hidden="true" id="generating-a-client-token"></a><a href="#generating-a-client-token" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating a client token</h3>
+<p>To work with <code>tinycli</code>, you need to generate and store your <code>uisvc</code> token. To
+do this you use the <code>init</code> subcommand:</p>
+<pre><code class="hljs css language-text">$ tinycli init
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="using-tinycli-subcommands"></a><a href="#using-tinycli-subcommands" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using tinycli subcommands</h3>
+<p>tinycli uses a familiar git-like subcommand interface; to see what subcommands
+are available, type <code>tinycli --help</code>. To see the help for a specific command,
+type <code>tinycli help &lt;subcommand&gt;</code>.</p>
+<pre><code class="hljs css language-text">$ tinycli --help
+NAME:
+   tinycli - tinyCI CLI
+
+USAGE:
+   tinycli [global options] command [command options] [arguments...]
+
+VERSION:
+   1.0.0 (tinyCI version 0.1.0)
+
+DESCRIPTION:
+   Commandline client to control tinyCI
+
+COMMANDS:
+     init, i    Initialize the client with a token and endpoint URL
+     submit, s  Submit a job to tinyCI
+     runs, r    List runs
+     log, l     Show a log by Run ID
+     help, h    Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --help, -h     show help
+   --version, -v  print the version
+</code></pre>
+<pre><code class="hljs css language-text">$ tinycli help submit
+NAME:
+   tinycli submit - Submit a job to tinyCI
+
+USAGE:
+   tinycli submit [command options] [parent or fork repository] [sha]
+
+DESCRIPTION:
+   Submit a job to tinyCI
+
+OPTIONS:
+   --all, -a  For a test of all task dirs, not just diff-affected ones
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/overview"><span class="arrow-prev">← </span><span>Services Overview</span></a><a class="docs-next button" href="/docs/runner"><span>CI Runners</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#react-ui">React UI</a><ul class="toc-headings"><li><a href="#adding-a-repository-to-ci">Adding a repository to CI</a></li><li><a href="#submitting-a-repository">Submitting a repository</a></li><li><a href="#filtering-the-list">Filtering the list</a></li><li><a href="#getting-runs-for-your-tasks-and-logs-for-your-runs">Getting runs for your tasks, and logs for your runs</a></li></ul></li><li><a href="#tinycli">tinycli</a><ul class="toc-headings"><li><a href="#getting-a-release">Getting a release</a></li><li><a href="#generating-a-client-token">Generating a client token</a></li><li><a href="#using-tinycli-subcommands">Using tinycli subcommands</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo-reverse.png" alt="tinyCI" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/intro.html">Getting Started</a><a href="/docs/en/installation.html">Installation Guide</a><a href="/docs/en/configuration.html">Configuration Guide</a><a href="/docs/en/api.html">API Reference</a></div><div><h5>Community</h5><a target="_blank" href="https://discord.gg/Y5tpxhU">Project Chat</a><a href="https://twitter.com/tinyci2" target="_blank" rel="noreferrer noopener">tinyCI Twitter</a></div><div><h5>More</h5><a class="github-button" href="https://github.com/tinyci/tinyci" data-icon="octicon-star" data-count-href="https://github.com/tinyci/tinyci/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star us on Github</a></div></section><section class="copyright">Copyright © 2019 Erik Hollensbe</section></footer></div></body></html>

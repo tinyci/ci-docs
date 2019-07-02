@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Configuring the Authentication Settings · tinyCI</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;The &lt;code&gt;auth:&lt;/code&gt; section contains several values related to managing the control&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Configuring the Authentication Settings · tinyCI"/><meta property="og:type" content="website"/><meta property="og:url" content="https://tinyci.org/"/><meta property="og:description" content="&lt;p&gt;The &lt;code&gt;auth:&lt;/code&gt; section contains several values related to managing the control&lt;/p&gt;
+"/><meta property="og:image" content="https://tinyci.org/img/logo-mains.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://tinyci.org/img/logo-main.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/zenburn.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-139424969-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-reverse-title.png" alt="tinyCI"/><h2 class="headerTitleWithLogo">tinyCI</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/intro" target="_self">Intro</a></li><li class="siteNavGroupActive"><a href="/docs/configuration" target="_self">Configuration Guide</a></li><li class=""><a href="/docs/api" target="_self">API</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Configuration Guide</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Configuration Guide</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/configuration">Configuration Guide Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/oauth">tinyCI OAuth</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/auth_config">Configuring the Authentication Settings</a></li><li class="navListItem"><a class="navItem" href="/docs/tls_authentication">Using TLS Authentication for the Service Mesh</a></li><li class="navListItem"><a class="navItem" href="/docs/client_config">Client Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/service_config">Service Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/hooksvc_config">Configuration of the hooksvc</a></li><li class="navListItem"><a class="navItem" href="/docs/runner_config">Configuring the Runners</a></li><li class="navListItem"><a class="navItem" href="/docs/repository_config">Repository Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/repository_properties">Repository Configuration Properties</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Configuring the Authentication Settings</h1></header><article><div><span><p>The <code>auth:</code> section contains several values related to managing the control
+plane specifically for uisvc. None of the settings get treated specially by
+other services.</p>
+<h2><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h2>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">auth:</span>
+<span class="hljs-attr">  session_crypt_key:</span> <span class="hljs-string">'84f678cd3939cb0b6fe7c03d98b8c49409b79c437eb75131bc0faa40eb858cb3'</span>
+<span class="hljs-attr">  token_crypt_key:</span> <span class="hljs-string">'af77787f8cbeb18204a6825b21191b1d60c53171d5fb22878ad8d907ea8629c2'</span>
+<span class="hljs-attr">  fixed_capabilities:</span>
+<span class="hljs-attr">    erikh:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'modify:user'</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'modify:ci'</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'submit'</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'cancel'</span>
+<span class="hljs-attr">    bot:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'modify:ci'</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="session_crypt_key"></a><a href="#session_crypt_key" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>session_crypt_key</h2>
+<p>The session crypt key is the key used to encrypt and decrypt session tokens.
+<strong>The uisvc will not boot without this set</strong>. This string is presented in
+hexadecimal format, and being an AES key must resolve to 16, 24, or 32 bytes
+after being converted. This script can be used to generate the key:</p>
+<pre><code class="hljs css language-text">xxd -ps -l 32 /dev/urandom | perl -e 'undef $/; print join("", split(/\n/, <>))."\n";'
+</code></pre>
+<p>If this key is lost or it is compromised, regenerate it. Users will need to
+talk to github again to get a new session key but should otherwise be fine.</p>
+<h2><a class="anchor" aria-hidden="true" id="token_crypt_key"></a><a href="#token_crypt_key" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>token_crypt_key</h2>
+<p>Currently, this value must be provided to all services. Soon it will just be a
+function of a few services, so this behavior will change.</p>
+<p>The key is generated in the same fashion as the <code>session_crypt_key</code>.</p>
+<p>This value is used to encrypt the Github secrets captured from OAuth
+challenges. They are stored in the database encrypted with the key in this
+fashion, and the various services use the key to decrypt it.</p>
+<h2><a class="anchor" aria-hidden="true" id="fixed_capabilities"></a><a href="#fixed_capabilities" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>fixed_capabilities</h2>
+<p><code>fixed_capabilities</code> is a way of specifying capabilities outside of the DB,
+either for recovery of an account, locking down of a specific account in a
+specialized way, or other manipulations. Please note that no database traffic
+is performed for situations where fixed capabilities are in play -- only the
+configuration is consulted.</p>
+<p>To supply this, you must supply a map of usernames, corresponded with a list of
+capabilities to support for that user. Any omitted ones will be assumed off. In
+this event, you will <strong>not be able to enable caps through the control plane</strong>.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">auth:</span>
+<span class="hljs-attr">  fixed_capabilities:</span>
+<span class="hljs-attr">    erikh:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'modify:user'</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'modify:ci'</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'submit'</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'cancel'</span>
+<span class="hljs-attr">    bot:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'modify:ci'</span>
+</code></pre>
+<p>In this case, we've given the <code>erikh</code> user the ability to do a lot of different
+stuff, including granting capabilities to other users. The <code>bot</code> user on the
+other hand, can manage repositories, but perform no other capable actions.</p>
+<p>Any attempt to modify the capabilities for either user will be fruitless as
+only this configuration will be considered.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/oauth"><span class="arrow-prev">← </span><span class="function-name-prevnext">tinyCI OAuth</span></a><a class="docs-next button" href="/docs/tls_authentication"><span>Using TLS Authentication for the Service Mesh</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#example">Example</a></li><li><a href="#session_crypt_key">session_crypt_key</a></li><li><a href="#token_crypt_key">token_crypt_key</a></li><li><a href="#fixed_capabilities">fixed_capabilities</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo-reverse.png" alt="tinyCI" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/intro.html">Getting Started</a><a href="/docs/en/installation.html">Installation Guide</a><a href="/docs/en/configuration.html">Configuration Guide</a><a href="/docs/en/api.html">API Reference</a></div><div><h5>Community</h5><a target="_blank" href="https://discord.gg/Y5tpxhU">Project Chat</a><a href="https://twitter.com/tinyci2" target="_blank" rel="noreferrer noopener">tinyCI Twitter</a></div><div><h5>More</h5><a class="github-button" href="https://github.com/tinyci/tinyci" data-icon="octicon-star" data-count-href="https://github.com/tinyci/tinyci/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star us on Github</a></div></section><section class="copyright">Copyright © 2019 Erik Hollensbe</section></footer></div></body></html>
